@@ -14,8 +14,25 @@ typedef struct Sala {
     struct Sala *direita;    // Caminho à direita
 } Sala;
 
+//  CRIA UMA NOVA SALA
+// Recebe o nome do cômodo
+// Aloca memória dinamicamente e devolve o ponteiro para o nó criado
 
+Sala* criarSala(const char* nome) {
+    Sala* nova = (Sala*) malloc(sizeof(Sala));  // aloca memória para a sala
+    if (!nova) {                                // verifica erro de alocação
+        printf("Erro ao alocar memoria!\n");
+        exit(1);
+}
+// Copia o nome recebido para dentro da estrutura
+    strcpy(nova->nome, nome);
 
+    // Inicialmente, não há caminhos (nó folha)
+    nova->esquerda = NULL;
+    nova->direita = NULL;
+
+    return nova;  // retorna a sala criada
+}
 
 
 

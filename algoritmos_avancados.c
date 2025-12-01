@@ -34,12 +34,46 @@ Sala* criarSala(const char* nome) {
     return nova;  // retorna a sala criada
 }
 
+//  EXPLORAÇÃO INTERATIVA
+// O jogador navega pela árvore pode escolher:
+//   'e' → ir para a esquerda
+//   'd' → ir para a direita
+//   's' → sair do jogo 
 
+void explorarSalas(Sala* atual) {
+// Loop principal da exploração
+    while (atual != NULL) {
+        printf("\nVocê está na sala: %s\n", atual->nome);
 
+        // Verifica se chegou a um nó-folha
+        if (atual->esquerda == NULL && atual->direita == NULL) {
+            printf("Fim do caminho! Você chegou ao final da exploração.\n");
+            return;
+        }
 
+char opcao;
+        printf("Escolha um caminho:\n");
+        if (atual->esquerda != NULL) printf("  (e) Ir para a ESQUERDA\n");
+        if (atual->direita != NULL)  printf("  (d) Ir para a DIREITA\n");
+        printf("  (s) Sair\n");
+        printf("Sua escolha: ");
+        scanf(" %c", &opcao);
 
-
-
+  if (opcao == 'e' && atual->esquerda != NULL) {
+            atual = atual->esquerda;  // move para o nó à esquerda
+        }
+        else if (opcao == 'd' && atual->direita != NULL) {
+            atual = atual->direita;   // move para o nó à direita
+        }
+        else if (opcao == 's') {
+            printf("Exploração encerrada.\n");
+            return;
+        }
+        else {
+            printf("Opção inválida! Tente novamente.\n");
+        }
+    }
+}
 
 
 

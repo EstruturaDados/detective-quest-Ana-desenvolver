@@ -75,8 +75,29 @@ char opcao;
     }
 }
 
+//  MONTAGEM DO MAPA DA MANSÃO
+// A árvore é criada manualmente 
+int main() {
+    // Criação das salas
+    Sala* hall = criarSala("Hall de Entrada");
+    Sala* salaEstar = criarSala("Sala de Estar");
+    Sala* cozinha = criarSala("Cozinha");
+    Sala* biblioteca = criarSala("Biblioteca");
+    Sala* laboratorio = criarSala("Laboratório");
 
+ // Montando os caminhos da mansão
+    hall->esquerda = salaEstar;
+    hall->direita  = cozinha;
 
+    salaEstar->esquerda = biblioteca;
+    salaEstar->direita  = laboratorio;
+
+    // Início do jogo
+    printf("=== EXPLORAÇÃO DA MANSÃO (Nível Novato) ===\n");
+    explorarSalas(hall);
+
+    return 0;
+}
 
 
 
